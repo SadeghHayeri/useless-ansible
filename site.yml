@@ -1,11 +1,11 @@
-#- hosts: all
-#  roles:
-#    - common
-#
-#- hosts: cdn
-#  roles:
-#    - nginx-install
-#    - nginx-configure
+- hosts: all
+  roles:
+    - common
+
+- hosts: cdn
+  roles:
+    - nginx-install
+    - nginx-configure
 
 - hosts: cdn
   roles:
