@@ -1,0 +1,5 @@
+- hosts: cdn
+  roles:
+    - common
+    - nginx
+
