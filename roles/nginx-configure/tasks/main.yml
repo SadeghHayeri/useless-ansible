@@ -1,0 +1,17 @@
+- name: copy server configs
+  loop: "{{ nginx.sites }}"
+  vars:
+    site: "{{ item }}"
+    conf: "{{ nginx }}"
+  template:
+    src: templates/service.conf.j2
+    dest: /etc/nginx/sites-available/{{ item.name }}.conf
+  notify:
+    - reload nginx # FIX IT!
+
+- name: link server configs to site-enabled
+  loop: "{{ nginx.sites }}"
+  file:
+    src: /etc/nginx/sites-available/{{ item.name }}.conf
+    dest: /etc/nginx/sites-enabled/{{ item.name }}.conf
+    state: link

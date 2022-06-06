@@ -1,0 +1,20 @@
+{% if site.proxy.type == 'upstream' %}
+upstream {{ site.proxy.upstream.name }} {
+	{% for server in site.proxy.upstream.servers %}
+	server {{ server.host }}:{{ server.port | default(80) }} weight={{ server.weight | default(1) }};   # name: {{ server.name }}
+	{% endfor -%}
+}
+{% endif %}
+
+server {
+	listen {{ nginx.httpPort }};
+	listen [::]:{{ nginx.httpPort }};
+
+	server_name {{ site.domain }};
+
+	{% if site.proxy.type == 'upstream' %}
+	location / {
+		proxy_pass http://{{ site.proxy.upstream.name }};
+	}
+	{% endif %}
+}

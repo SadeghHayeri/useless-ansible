@@ -1,0 +1,14 @@
+- name: reload nginx
+  debug:
+    msg: nginx reloaded
+  notify:
+    - check nginx configs
+    - reload nginx without check
+
+- name: check nginx configs
+  command: nginx -t
+
+- name: reload nginx without check
+  service:
+    name: nginx
+    state: reload

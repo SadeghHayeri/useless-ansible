@@ -1,0 +1,19 @@
+- name: install nginx service
+  apt:
+    name: nginx
+    state: present
+    cache_valid_time: 3600
+
+- name: be sure nginx is running and enabled
+  service:
+    name: nginx
+    state: started
+    enabled: yes
+
+- name: remove default configs
+  file:
+      path: "{{ item }}"
+      state: absent
+  with_items:
+    - /etc/nginx/sites-enabled/default
+    - /etc/nginx/sites-available/default
