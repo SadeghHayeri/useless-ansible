@@ -1,0 +1,4 @@
+- name: Include all
+  include_tasks: "{{ item }}"
+  loop:
+    - ntp.yml
