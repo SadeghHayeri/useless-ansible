@@ -1,0 +1,10 @@
+haproxy_frontend_bind_address: '*'
+haproxy_frontend_port: 8000
+
+# List of backend servers.
+haproxy_backend_servers:
+ - name: nginx
+   address: 127.0.0.1:80
+
+# Extra global vars (see README for example usage).
+haproxy_global_vars: []

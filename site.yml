@@ -1,8 +1,12 @@
 #- hosts: all
 #  roles:
 #    - common
+#
+#- hosts: cdn
+#  roles:
+#    - nginx-install
+#    - nginx-configure
 
 - hosts: cdn
   roles:
-    - nginx-install
-    - nginx-configure
+    - geerlingguy.haproxy
